@@ -1,0 +1,33 @@
+<script>
+    // 1. Nuestra "Base de Datos" de productos (Lista de ropa)
+    const productos = [
+        { nombre: "Playera Premium", precio: 299, imagen: "https://via.placeholder.com/150" },
+        { nombre: "Pantalón Denim", precio: 450, imagen: "https://via.placeholder.com/150" },
+        { nombre: "Chaqueta Novedades", precio: 850, imagen: "https://via.placeholder.com/150" }
+    ];
+
+    // 2. Función para mostrar los productos en la pantalla
+    const contenedor = document.getElementById('productos');
+
+    productos.forEach(item => {
+        // Creamos la "tarjeta" de cada producto usando clases de diseño rápido (Tailwind)
+        contenedor.innerHTML += `
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <img src="${item.imagen}" class="w-full h-48 object-cover rounded">
+                <h3 class="text-lg font-bold mt-2">${item.nombre}</h3>
+                <p class="text-green-600 font-bold">$${item.precio}</p>
+                <button onclick="pedirWhatsApp('${item.nombre}')" 
+                        class="mt-3 w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600">
+                    Pedir por WhatsApp
+                </button>
+            </div>
+        `;
+    });
+
+    // 3. Función para conectar con WhatsApp
+    function pedirWhatsApp(producto) {
+        const telefono = "521234567890"; // Aquí pondrás tu número real más adelante
+        const mensaje = `Hola Novedades DANY, me interesa el producto: ${producto}`;
+        window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`, '_blank');
+    }
+</script>
